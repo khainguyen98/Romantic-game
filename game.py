@@ -170,4 +170,4 @@ while running:
 
     show_score(textX,textY)
     fpsclock.tick()
-    pygame.display.flip()
+    trò chơi . màn hình hiển thị . lật (t
