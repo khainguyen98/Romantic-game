@@ -22,7 +22,7 @@ khaiY_change = []
 num_of_khai = 5
 
 for i in range(num_of_khai):
-    khaiImg.append(pygame.image.load('khai.png'))
+    khaiImg.append(pygame.image.load(''))
     khaiX.append(random.randint(0,735))
     khaiY.append(random.randint(20,150))
     khaiX_change.append(0.2)
@@ -32,7 +32,7 @@ for i in range(num_of_khai):
         screen.blit(khaiImg[i],(x,y))
 
 # your girl friend
-haImg = pygame.image.load('ngan.png')
+haImg = pygame.image.load('.png')
 haX = 380
 haY = 500
 haX_change = 0
