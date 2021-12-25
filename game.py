@@ -14,37 +14,37 @@ screen = pygame.display.set_mode((800,600))
 background = pygame.image.load('background.png')
 
 # you
-haiImg = []
-haiX = []
-haiY = []
-haiX_change = []
-haiY_change = []
-num_of_hai = 5
+khaiImg = []
+khaiX = []
+khaiY = []
+khaiX_change = []
+khaiY_change = []
+num_of_khai = 5
 
-for i in range(num_of_hai):
-    haiImg.append(pygame.image.load('hai.png'))
-    haiX.append(random.randint(0,735))
-    haiY.append(random.randint(20,150))
-    haiX_change.append(0.2)
-    haiY_change.append(20)
+for i in range(num_of_khai):
+    khaiImg.append(pygame.image.load('khai.png'))
+    khaiX.append(random.randint(0,735))
+    khaiY.append(random.randint(20,150))
+    khaiX_change.append(0.2)
+    khaiY_change.append(20)
 
-    def hai(x,y,i):
-        screen.blit(haiImg[i],(x,y))
+    def khai(x,y,i):
+        screen.blit(khaiImg[i],(x,y))
 
 # your girl friend
-nganImg = pygame.image.load('ngan.png')
-nganX = 380
-nganY = 500
-nganX_change = 0
-nganY_change = 0
+haImg = pygame.image.load('ngan.png')
+haX = 380
+haY = 500
+haX_change = 0
+Y_change = 0
 
-def ngan(x,y):
-    screen.blit(nganImg,(x,y))
+def ha(x,y):
+    screen.blit(haImg,(x,y))
 
 # heart
 heartImg = pygame.image.load('heart.png')
 heartX = 0
-heartY = nganY
+heartY = haY
 heartX_change = 0
 heartY_change = 0.4
 
@@ -100,69 +100,69 @@ while running:
             running = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
-                nganX_change = 1
+                haX_change = 1
             if event.key == pygame.K_LEFT:
-                nganX_change = -1
+                haX_change = -1
             if event.key == pygame.K_UP:
-                nganY_change = -1
+                haY_change = -1
             if event.key == pygame.K_DOWN:
-                nganY_change = 1
+              change = 1
             if event.key == pygame.K_SPACE:
                 if heart_state == "ready":
-                    heartX = nganX
-                    heartY = nganY
+                    heartX = haX
+                    heartY = Y
                     heart(heartX,heartY)
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:
-                nganX_change = 0
+                haX_change = 0
             if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
-                nganY_change = 0
+                haY_change = 0
 
-    ngan(nganX,nganY)
-    nganX += nganX_change
-    nganY += nganY_change
+    ha(haX,haY)
+    haX += haX_change
+    Y += haY_change
 
-    if nganX <=0:
-        nganX = 0 
-    elif nganX >=736:
-        nganX = 736
+    if haX <=0:
+        haX = 0 
+    elif haX >=736:
+        haX = 736
 
-    if nganY <= 400: 
-        nganY = 400
-    elif nganY >=530:
-        nganY = 529
+    if haY <= 400: 
+        haY = 400
+    elif haY >=530:
+        haY = 529
 
-    for i in range(num_of_hai):
+    for i in range(num_of_khai):
         # game over
-        if haiY[i] > 200:
-            for j in range(num_of_hai):
-                haiY[j] =2000
+        if khaiY[i] > 200:
+            for j in range(num_of_khai):
+                khaiY[j] =2000
             game_over_text()
             break
 
-        hai(haiX[i],haiY[i],i)
+        khai(khaiX[i],khaiY[i],i)
 
-        if haiX[i] <= 0:
-            haiX_change[i] = 0.2
-            haiY[i] += haiY_change[i]
-        if haiX[i] >= 736:
-            haiX_change[i] = -0.2
-            haiY[i] += haiY_change[i]
+        if khaiX[i] <= 0:
+            khaiX_change[i] = 0.2
+            khaiY[i] += khaiY_change[i]
+        if khaiX[i] >= 736:
+            khaiX_change[i] = -0.2
+            khaiY[i] += khaiY_change[i]
 
-        haiX[i] += haiX_change[i]
+        khaiX[i] += khaiX_change[i]
            
-        collision = iscollision(haiX[i],haiY[i],heartX,heartY)
+        collision = iscollision(khaiX[i],khaiY[i],heartX,heartY)
         if collision:
             heart_state = "ready"
-            haiY[i] = random.randint(50,150)
-            haiX[i] = random.randint(0,735)
+            khaiY[i] = random.randint(50,150)
+            khaiX[i] = random.randint(0,735)
             score_value += 1
             explosion_sound = mixer.Sound('tick.wav')
             explosion_sound.play()
 
     if heartY <= 0:
-        heartY = nganY
+        heartY = Y
         heart_state ="ready" 
     if heart_state == "fire":
         heartY -= heartY_change
